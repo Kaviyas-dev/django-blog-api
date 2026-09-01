@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: white;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            background: #667eea;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 7px;
+        }
+
+        .profile-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .profile-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            margin-bottom: 20px;
+        }
+
+        .profile-container h1 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .username {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .profile-info {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-item strong {
+            display: block;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .info-item span {
+            color: #777;
+        }
+
+        .edit-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .edit-btn:hover {
+            background: #5568d8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar">
+
+        <a href="{% url 'home' %}" class="logo">
+            My Blog
+        </a>
+
+        <a href="{% url 'home' %}" class="back-btn">
+            ← Home
+        </a>
+
+    </nav>
+
+
+    <div class="profile-container">
+
+        <img
+            src="{{ profile.profile_image.url }}"
+            alt="Profile Picture"
+            class="profile-image"
+        >
+
+
+        <h1>
+            {{ user.username }}
+        </h1>
+
+        <p class="username">
+            @{{ user.username }}
+        </p>
+
+
+        <div class="profile-info">
+
+            <div class="info-item">
+
+                <strong>Email</strong>
+
+                <span>
+                    {{ user.email|default:"Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <strong>Phone</strong>
+
+                <span>
+                    {{ profile.phone|default:"Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <strong>Address</strong>
+
+                <span>
+                    {{ profile.address|default:"Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <strong>Bio</strong>
+
+                <span>
+                    {{ profile.bio|default:"No bio added yet." }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="{% url 'edit_profile' %}"
+            class="edit-btn">
+
+            ✏️ Edit Profile
+
+        </a>
+
+    </div>
+
+
+</body>
+
+</html>
